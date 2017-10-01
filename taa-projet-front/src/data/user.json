@@ -1,0 +1,34 @@
+[
+    {
+        "id":"1",
+        "nom":"Bambois",
+        "prenom":"Jean",
+        "login":"jeanbambois",
+        "password":"jbpassword",
+        "email":"jean.bambois@azertyuiop.xyz"
+    },
+    {
+        "id":"2",
+        "nom":"Deffaire",
+        "prenom":"Phil",
+        "login":"phildeffaire",
+        "password":"pdpassword",
+        "email":"phil.deffaire@azertyuiop.xyz"
+    },
+    {
+        "id":"3",
+        "nom":"Terieur",
+        "prenom":"Alain",
+        "login":"alainterieur",
+        "password":"atpassword",
+        "email":"alain.terieur@azertyuiop.xyz"
+    },
+    {
+        "id":"4",
+        "nom":"Terieur",
+        "prenom":"Alex",
+        "login":"alexterieur",
+        "password":"atpassword2",
+        "email":"alex.terieur@azertyuiop.xyz"
+    }
+]
