@@ -12,11 +12,14 @@ import { UserService } from './services/user.service';
 import { UserConnectFormComponent } from './user-connect-form/user-connect-form.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 const routes = [
   { path:'', component:HomeComponent },
-  { path:'users', component:UserListComponent},
-  { path:'about', component:AboutComponent}
+  { path:'user', component:UserListComponent},
+  { path:'about', component:AboutComponent},
+  { path:'login', component:AuthenticationComponent},
+  { path:'register', component:AuthenticationComponent}
 ]
 
 @NgModule({
@@ -27,7 +30,8 @@ const routes = [
     ActiviteListComponent,
     UserConnectFormComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
