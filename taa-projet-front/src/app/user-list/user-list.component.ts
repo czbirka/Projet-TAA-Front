@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { UserService } from '../services/user.service';
 
+import { User } from '../entities/user';
+
 @Component({
   selector: 'taa-user-list',
   templateUrl: './user-list.component.html',
@@ -9,25 +11,14 @@ import { UserService } from '../services/user.service';
 })
 export class UserListComponent implements OnInit {
 
-  users = [];
-  error = '';
+  users: User[];
 
-  constructor(private userService:UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    /*
-    this.userService.getUsers()
-                    .subscribe(
-                      data => this.users = data,
-                      error => {
-                        console.error(error);
-                        this.error = error;
-                      }
-                    );
-  }
-  */
-
-  this.userService.getUsers().then( data => this.users = data);
+  this.userService.getUsers().then( response => {
+    this.users = response;
+  });
 }
 
 }
