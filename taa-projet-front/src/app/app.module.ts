@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { AccordionModule } from 'ng2-accordion/'
+import { AccordionModule } from 'ng2-accordion/';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
@@ -41,7 +42,8 @@ const routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    AccordionModule
+    AccordionModule,
+    Ng2FilterPipeModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
