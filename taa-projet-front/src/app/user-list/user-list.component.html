@@ -1,7 +1,14 @@
-<p>
-  user-list works!
-</p>
-<h1>Prévisions</h1>
+
+<!-- <h1>Mes informations</h1>
+<div *ngFor="let user of users">
+    <p>
+    Nom: {{user.nom}} <br>
+    Prénom: {{user.prenom}} <br> 
+    Login: {{user.login}} <br>
+    Active Email: {{user.email}} <br> 
+  </p>
+</div> -->
+<!-- <h1>Prévisions</h1>
 <p>afficher les prévisions ici</p>
 <table border="1">
   <thead>
@@ -16,70 +23,71 @@
       <td>lieu2</td>
     </tr>
   </tbody>
-</table>
-<div *ngFor="let user of users">
-  {{ user.nom }} {{ user.prenom }}
-</div>
+</table> -->
 
-<button class="accordion">Section 1</button>
-<div class="panel">
-  <p>Lorem ipsum...</p>
-</div>
-
-<button class="accordion">Section 2</button>
-<div class="panel">
-  <p>Lorem ipsum...</p>
-</div>
-
-<button class="accordion">Section 3</button>
-<div class="panel">
-  <p>Lorem ipsum...</p>
-</div>
-
-<style>
-  /* Style the buttons that are used to open and close the accordion panel */
-
-  button.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-  }
-  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-
-  button.accordion.active,
-  button.accordion:hover {
-    background-color: #ccc;
-  }
-  /* Style the accordion panel. Note: hidden by default */
-
-  div.panel {
-    padding: 0 18px;
-    background-color: white;
-    display: none;
-  }
-
-</style>
-
-<script>
-  var acc = document.getElementsByClassName("accordion");
-  var i;
-
-  for (i = 0; i < acc.length; i++) {
-    acc[i].onclick = function () {
-      this.classList.toggle("active");
-      var panel = this.nextElementSibling;
-      if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-      }
-    }
-  }
-
-</script>
+<div class="container">
+    <form class="form-horizontal" role="form">
+        <h2>Registration Form</h2>
+        <div class="form-group">
+            <label for="notification" class="col-sm-3 control-label">Notification</label>
+            <div class="col-sm-9">
+                <select id="notification" class="form-control">
+                    <option>Mardi</option>
+                    <option>Mercredi</option>
+                </select>
+            </div>
+        </div> <!-- /.form-group -->
+        <div class="form-group">
+            <label for="departement" class="col-sm-3 control-label">Département</label>
+            <div class="col-sm-9">
+                <input type="text" id="departement" name="departement" placeholder="Département" class="form-control" autofocus>
+                <span class="help-block">Département, eg.: Ille-Et-Vilaine</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="region" class="col-sm-3 control-label">Région</label>
+            <div class="col-sm-9">
+                <input type="text" id="region" name="region" placeholder="Région" class="form-control" autofocus>
+                <span class="help-block">Région, eg.: Bretagne</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ville" class="col-sm-3 control-label">Ville</label>
+            <div class="col-sm-9">
+                <select id="ville" name="ville" class="form-control" (click)="log(selectedLieu)" [(ngModel)]="selectedLieu">
+                    <option *ngFor="let lieu of lieux" [ngValue]="lieu">{{lieu.nom}}</option>
+                </select>
+            </div>
+        </div> <!-- /.form-group -->
+        <!-- <div class="form-group">
+            <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
+            <div class="col-sm-9">
+                <input type="date" id="birthDate" class="form-control">
+            </div>
+        </div> -->
+        <div class="form-group">
+            <label for="activite" class="col-sm-3 control-label">Activités</label>
+            <div class="col-sm-9">
+                <select id="activite" class="form-control">
+                    <option>Sport1</option>
+                    <option>Sport2</option>
+                    <option>Sport3</option>
+                </select>
+            </div>
+        </div> <!-- /.form-group -->
+        <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">I accept <a href="#">terms</a>
+                    </label>
+                </div>
+            </div>
+        </div> <!-- /.form-group -->
+        <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </div>
+        </div>
+    </form> <!-- /form -->
+</div> <!-- ./container -->
