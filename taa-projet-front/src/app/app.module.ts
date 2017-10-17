@@ -18,6 +18,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 const routes = [
   { path:'', component:HomeComponent },
   { path:'user', component:UserListComponent},
+  { path:'activities', component:ActiviteListComponent},
   { path:'about', component:AboutComponent},
   { path:'login', component:AuthenticationComponent},
   { path:'register', component:AuthenticationComponent}
