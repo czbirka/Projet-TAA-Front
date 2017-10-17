@@ -1,15 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {AccordionModule} from "ng2-accordion";
 
 @Component({
   selector: 'taa-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './home.component.html'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent  {
+    isGroupOpen = false;
 
-  constructor() { }
+    groups: Array<any> = [
+        {
+            heading: 'Rennes',
+            content: ' Cloudy :('
+        },
+        {
+            heading: 'Nantes',
+            content: ' Sunny :) '
+        },
+        {
+            heading: 'Brest ',
+            content: 'Windy :| '
+        }
+    ];
 
-  ngOnInit() {
-  }
+    removeAngular2AccordionGroup() {
+        this.groups.splice(1,1);
+    }
 
+    addAngular2AccordionGroup() {
+        let accordionGroupContent = {heading:'Hi New Content !', content:'Content angular 2 accordion '};
+        this.groups.splice(1,0,accordionGroupContent);
+    }
 }
