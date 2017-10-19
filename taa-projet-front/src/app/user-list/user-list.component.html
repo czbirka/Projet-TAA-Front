@@ -1,33 +1,6 @@
-
-<!-- <h1>Mes informations</h1>
-<div *ngFor="let user of users">
-    <p>
-    Nom: {{user.nom}} <br>
-    Prénom: {{user.prenom}} <br> 
-    Login: {{user.login}} <br>
-    Active Email: {{user.email}} <br> 
-  </p>
-</div> -->
-<!-- <h1>Prévisions</h1>
-<p>afficher les prévisions ici</p>
-<table border="1">
-  <thead>
-    <tr>
-      <th>Mardi Date1</th>
-      <th>Mercredi Date2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>lieu1</td>
-      <td>lieu2</td>
-    </tr>
-  </tbody>
-</table> -->
-
 <div class="container">
     <form class="form-horizontal" role="form">
-        <h2>Registration Form</h2>
+        <h2>What Can I Do ?</h2>
         <div class="form-group">
             <label for="notification" class="col-sm-3 control-label">Notification</label>
             <div class="col-sm-9">
@@ -57,6 +30,7 @@
                 <select id="ville" name="ville" class="form-control" (click)="log(selectedLieu)" [(ngModel)]="selectedLieu">
                     <option *ngFor="let lieu of lieux" [ngValue]="lieu">{{lieu.nom}}</option>
                 </select>
+                <div *ngIf="selectedLieu"> {{"lat=" + selectedLieu.latitude}}&{{"lon=" + selectedLieu.longitude}}</div>
             </div>
         </div> <!-- /.form-group -->
         <!-- <div class="form-group">
@@ -69,9 +43,7 @@
             <label for="activite" class="col-sm-3 control-label">Activités</label>
             <div class="col-sm-9">
                 <select id="activite" class="form-control">
-                    <option>Sport1</option>
-                    <option>Sport2</option>
-                    <option>Sport3</option>
+                    <option *ngFor="let activite of activities" [ngValue]="activite">{{activite.nom}}</option>
                 </select>
             </div>
         </div> <!-- /.form-group -->

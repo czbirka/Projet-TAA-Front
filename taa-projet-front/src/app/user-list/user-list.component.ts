@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ActivitiesService } from '../services/activities.service';
 import { UserService } from '../services/user.service';
 import { LieuListService } from '../services/lieu-list.service';
 
@@ -14,9 +15,12 @@ export class UserListComponent implements OnInit {
 
   users: User[];
   lieux: any[];
+  activities: any[];
   selectedLieu: any;
 
-  constructor(private userService: UserService, private lieuListService: LieuListService) { }
+  constructor(private userService: UserService,
+    private lieuListService: LieuListService,
+    private activitiesService: ActivitiesService ) { }
 
   ngOnInit() {
     this.userService.getUsers().then( response => {
@@ -25,6 +29,10 @@ export class UserListComponent implements OnInit {
 
     this.lieuListService.getLieux().then( response => {
       this.lieux = response;
+    });
+
+    this.activitiesService.getActivities().then( response => {
+      this.activities = response;
     });
   }
 

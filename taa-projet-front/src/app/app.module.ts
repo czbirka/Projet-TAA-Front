@@ -13,6 +13,7 @@ import { LieuListComponent } from './lieu-list/lieu-list.component';
 import { UserConnectFormComponent } from './user-connect-form/user-connect-form.component';
 import { UserListComponent } from './user-list/user-list.component';
 
+import { ActivitiesService } from './services/activities.service';
 import { LieuListService } from './services/lieu-list.service';
 import { UserService } from './services/user.service';
 
@@ -43,6 +44,7 @@ const routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
+    ActivitiesService,
     UserService,
     LieuListService
   ],
