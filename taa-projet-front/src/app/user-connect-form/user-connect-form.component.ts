@@ -10,7 +10,7 @@ export class UserConnectFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -19,7 +19,7 @@ export class UserConnectFormComponent implements OnInit {
       login: '',
       motDePasse: '',
       email: ''
-    })
+    });
   }
 
   userConnection() {
