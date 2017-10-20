@@ -5,10 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './activite-list.component.html',
   styleUrls: ['./activite-list.component.css']
 })
-export class ActiviteListComponent{
+export class ActiviteListComponent {
 
-activities: any[] = [{ name: 'Foot' }, { name: 'Volley' }, { name: 'Surf' }
-                    ,{ name: 'Tennis' }, { name: 'Basket' }, { name: 'Vélo' }];
+activities: any[] = [{ name: 'Foot' }, { name: 'Volley' }, { name: 'Surf' },
+                    { name: 'Tennis' }, { name: 'Basket' }, { name: 'Vélo' }];
   activitiesFilter: any = { name: '' };
 
 }

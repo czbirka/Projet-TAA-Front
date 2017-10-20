@@ -24,14 +24,16 @@ import { UserService } from './services/user.service';
 import { AlertComponent } from './alert/alert.component';
 import { RegistrationComponent } from './registration/registration.component';
 
+import { AuthenticationGuard } from './guard/authentication.guard';
+
 const routes = [
 
-  { path: '', component: HomeComponent },
-  { path: 'user', component: UserListComponent},
-  { path: 'activities', component: ActiviteListComponent},
-  { path: 'about', component: AboutComponent},
-  { path: 'login', component: AuthenticationComponent},
-  { path: 'register', component: RegistrationComponent}
+  { path: '', component: HomeComponent, canActivate: [AuthenticationGuard] },
+  { path: 'user', component: UserListComponent, canActivate: [AuthenticationGuard] },
+  { path: 'activities', component: ActiviteListComponent, canActivate: [AuthenticationGuard] },
+  { path: 'about', component: AboutComponent, canActivate: [AuthenticationGuard] },
+  { path: 'login', component: AuthenticationComponent },
+  { path: 'register', component: RegistrationComponent }
 ];
 
 @NgModule({
@@ -59,6 +61,7 @@ const routes = [
   providers: [
     AccountService,
     ActivitiesService,
+    AuthenticationGuard,
     AuthenticationService,
     LieuListService,
     AlertService,

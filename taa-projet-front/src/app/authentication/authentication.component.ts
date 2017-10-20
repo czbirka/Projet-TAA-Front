@@ -32,17 +32,17 @@ export class AuthenticationComponent implements OnInit {
   }
 
   login() {
-    // console.log(formData);
+    // console.log(this.model.username, this.model.password, this.returnUrl);
     this.loading = true;
     this.authenticationService.login(this.model.username, this.model.password)
-        .subscribe(
-            data => {
-                this.router.navigate([this.returnUrl]);
-            },
-            error => {
-                this.alertService.error(error);
-                this.loading = false;
-            });
-}
+    .subscribe(
+      data => {
+          this.router.navigate([this.returnUrl]);
+      },
+      error => {
+          this.alertService.error(error);
+          this.loading = false;
+      });
+  }
 
 }

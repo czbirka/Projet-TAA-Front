@@ -77,8 +77,6 @@ export class RegistrationComponent implements OnInit {
     this.newUser.motDePasse = this.model.password1;
     this.newUser.email = this.model.email1;
 
-    console.log(this.newUser, this.newUser instanceof User);
-
     this.register();
   }
 
