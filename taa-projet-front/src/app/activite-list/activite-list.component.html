@@ -1,10 +1,10 @@
-<!-- <div>
+<div>
 		<h3> Mes Activités :</h3>
         <input type="text" [(ngModel)]="activitiesFilter.name" placeholder="name">
         <ul>
-          <li *ngFor="let activitie of activities | filterBy: activitiesFilter">{{ activitie.name }}</li> -->
+          <li *ngFor="let activitie of activities | filterBy: activitiesFilter">{{ activitie.name }}</li> 
           
           <!-- in case you want to show empty message -->
-          <!-- <li *ngIf="(activities | filterBy: stringFilter).length === 0">No matching elements</li>
+          <li *ngIf="(activities | filterBy: stringFilter).length === 0">No matching elements</li>
         </ul>
-</div> -->
+</div> 

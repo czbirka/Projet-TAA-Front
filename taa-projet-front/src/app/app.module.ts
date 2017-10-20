@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-// import { AccordionModule } from 'ng2-accordion/';
-// import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+import { AccordionModule } from 'ng2-accordion/';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 import { AboutComponent } from './about/about.component';
 import { ActiviteListComponent } from './activite-list/activite-list.component';
@@ -53,8 +53,8 @@ const routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    // AccordionModule,
-    // Ng2FilterPipeModule
+    AccordionModule,
+    Ng2FilterPipeModule
   ],
   providers: [
     AccountService,
