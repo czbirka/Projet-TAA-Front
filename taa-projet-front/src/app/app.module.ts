@@ -11,7 +11,7 @@ import { ActiviteListComponent } from './activite-list/activite-list.component';
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { HomeComponent } from './home/home.component';
-import { LieuListComponent } from './lieu-list/lieu-list.component';
+import { LieuComponent } from './lieu/lieu.component';
 import { UserConnectFormComponent } from './user-connect-form/user-connect-form.component';
 import { UserListComponent } from './user-list/user-list.component';
 
@@ -19,7 +19,7 @@ import { AccountService } from './services/account.service';
 import { ActivitiesService } from './services/activities.service';
 import { AlertService } from './services/alert.service';
 import { AuthenticationService } from './services/authentication.service';
-import { LieuListService } from './services/lieu-list.service';
+import { LieuService } from './services/lieu.service';
 import { UserService } from './services/user.service';
 import { AlertComponent } from './alert/alert.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -40,7 +40,7 @@ const routes = [
   declarations: [
     AppComponent,
     UserListComponent,
-    LieuListComponent,
+    LieuComponent,
     ActiviteListComponent,
     UserConnectFormComponent,
     HomeComponent,
@@ -63,7 +63,7 @@ const routes = [
     ActivitiesService,
     AuthenticationGuard,
     AuthenticationService,
-    LieuListService,
+    LieuService,
     AlertService,
     UserService
   ],

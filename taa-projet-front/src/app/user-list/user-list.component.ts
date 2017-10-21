@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivitiesService } from '../services/activities.service';
 import { UserService } from '../services/user.service';
-import { LieuListService } from '../services/lieu-list.service';
+import { LieuService } from '../services/lieu.service';
 
 import { User } from '../entities/user';
 
@@ -19,7 +19,7 @@ export class UserListComponent implements OnInit {
   selectedLieu: any;
 
   constructor(private userService: UserService,
-    private lieuListService: LieuListService,
+    private lieuListService: LieuService,
     private activitiesService: ActivitiesService ) { }
 
   ngOnInit() {

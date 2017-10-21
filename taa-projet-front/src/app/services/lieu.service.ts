@@ -4,15 +4,16 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
+
 @Injectable()
-export class ActivitiesService {
+export class LieuService {
 
   BASE_URL = 'http://localhost:9200'; // Url de notre backend spring
 
   constructor(private http: Http) { }
 
-  getActivities(): Promise<any[]> {
-    return this.http.get(this.BASE_URL + '/activite', this.jwt())
+  getLieux(): Promise<any[]> {
+    return this.http.get(this.BASE_URL + '/lieu', this.jwt())
       .map(res => res.json())
       .toPromise()
       .catch(this.handleError);
@@ -31,5 +32,4 @@ export class ActivitiesService {
       return new RequestOptions({ headers: headers });
     }
   }
-
 }

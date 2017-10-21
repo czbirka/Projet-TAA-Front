@@ -13,21 +13,25 @@ export class AuthenticationService {
     });
 
     token: string;
+    isAuth: boolean;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) { 
+        this.isAuth = false;
+    }
 
     login(username: string, password: string) {
         return this.http.post(
             this.BASE_URL + '/account/login',
             JSON.stringify({ username: username, password: password }),
-            {headers: this.headers}
+            { headers: this.headers }
         )
         .map((response: Response) => {
             // login successful if there's a jwt token in the response
-            let token = response.text();
+            let token = {"token": response.text()};
             if (token !== undefined) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(token));
+                this.isAuth = true;
             }
             return token;
         });
@@ -36,5 +40,10 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        this.isAuth = false;
+    }
+
+    isLogged() {
+        return this.isAuth;
     }
 }

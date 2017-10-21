@@ -15,6 +15,7 @@ export class AuthenticationComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
+  isAuth: boolean;
 
   constructor(
     private authenticationService: AuthenticationService,
