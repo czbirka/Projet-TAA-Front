@@ -17,7 +17,7 @@ export class AccountService {
   }
 
   create(user: User) {
-      return this.http.post(this.BASE_URL + '/user', user, this.jwt()).map((response: Response) => response.json());
+      return this.http.post(this.BASE_URL + '/account/register', user, this.jwt()).map((response: Response) => response.json());
   }
 
   update(user: User) {

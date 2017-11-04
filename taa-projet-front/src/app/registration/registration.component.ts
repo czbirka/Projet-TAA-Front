@@ -21,28 +21,30 @@ export class RegistrationComponent implements OnInit {
     private accountService: AccountService,
     private alertService: AlertService) { }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 
   register() {
     this.loading = true;
+    console.log(this.newUser);
+    
     this.accountService.create(this.newUser)
       .subscribe(
-        data => {
-            this.alertService.success('Registration successful', true);
-            this.router.navigate(['/login']);
-        },
-        error => {
-            this.alertService.error(error);
-            this.loading = false;
-        });
-      }
+      data => {
+        this.alertService.success('Registration successful', true);
+        this.router.navigate(['/login']);
+      },
+      error => {
+        this.alertService.error(error);
+        this.loading = false;
+      });
+  }
 
-    performControl() {
+  performControl() {
     console.log(this.model);
 
     // Si le formulaire n'a pas été passé
-    if (this.model === undefined ) {
+    if (this.model === undefined) {
       console.log('Erreur lors de l\'envoi du formulaire');
       return;
     } else if ( // S'il manque un champ
@@ -52,10 +54,10 @@ export class RegistrationComponent implements OnInit {
       this.model.lastName === undefined ||
       this.model.password1 === undefined ||
       this.model.password2 === undefined ||
-      this.model.username === undefined ) {
-          console.log('Veuillez remplir tous les champs !');
-          return;
-      }
+      this.model.username === undefined) {
+      console.log('Veuillez remplir tous les champs !');
+      return;
+    }
 
     // Email différents
     if (this.model.email1 !== this.model.email2) {
