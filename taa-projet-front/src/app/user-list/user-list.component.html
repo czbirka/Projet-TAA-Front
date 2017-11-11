@@ -1,65 +1,134 @@
 <div class="container">
     <form class="form-horizontal" role="form">
-        <h2>What Can I Do ?</h2>
-        <div class="form-group">
-            <label for="notification" class="col-sm-3 control-label">Notification</label>
-            <div class="col-sm-9">
-                <select id="notification" class="form-control">
-                    <option>Mardi</option>
-                    <option>Mercredi</option>
-                </select>
-            </div>
-        </div> <!-- /.form-group -->
-        <div class="form-group">
-            <label for="departement" class="col-sm-3 control-label">Département</label>
-            <div class="col-sm-9">
-                <input type="text" id="departement" name="departement" placeholder="Département" class="form-control" autofocus>
-                <span class="help-block">Département, eg.: Ille-Et-Vilaine</span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="region" class="col-sm-3 control-label">Région</label>
-            <div class="col-sm-9">
-                <input type="text" id="region" name="region" placeholder="Région" class="form-control" autofocus>
-                <span class="help-block">Région, eg.: Bretagne</span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="ville" class="col-sm-3 control-label">Ville</label>
-            <div class="col-sm-9">
-                <select id="ville" name="ville" class="form-control" (click)="log(selectedLieu)" [(ngModel)]="selectedLieu">
-                    <option *ngFor="let lieu of lieux" [ngValue]="lieu">{{lieu.nom}}</option>
-                </select>
-                <div *ngIf="selectedLieu"> {{"lat=" + selectedLieu.latitude}}&{{"lon=" + selectedLieu.longitude}}</div>
-            </div>
-        </div> <!-- /.form-group -->
-        <!-- <div class="form-group">
-            <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
-            <div class="col-sm-9">
-                <input type="date" id="birthDate" class="form-control">
-            </div>
-        </div> -->
-        <div class="form-group">
-            <label for="activite" class="col-sm-3 control-label">Activités</label>
-            <div class="col-sm-9">
-                <select id="activite" class="form-control">
-                    <option *ngFor="let activite of activities" [ngValue]="activite">{{activite.nom}}</option>
-                </select>
-            </div>
-        </div> <!-- /.form-group -->
-        <div class="form-group">
-            <div class="col-sm-9 col-sm-offset-3">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox">I accept <a href="#">terms</a>
-                    </label>
+        <h2>What Can I Do ? You can "Plan a new activity !"</h2>
+
+        <fieldset>
+            <legend>Localité</legend>        
+            <div class="form-group">
+                <label for="region" class="col-sm-3 control-label">Région</label>
+                <div class="col-sm-9">
+                    <select autofocus id="region" name="region" class="form-control" (change)="onRegionSelected(ihm.selected.region)" [(ngModel)]="ihm.selected.region">
+                        <option *ngFor="let region of ihm.set.regions" [ngValue]="region.nom">{{region.nom}}</option>
+                    </select>
                 </div>
             </div>
-        </div> <!-- /.form-group -->
-        <div class="form-group">
-            <div class="col-sm-9 col-sm-offset-3">
-                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <div class="form-group" *ngIf="ihm.selected.region">
+                <label for="departement" class="col-sm-3 control-label">Département</label>
+                <div class="col-sm-9">
+                    <select id="departement" name="departement" class="form-control" (change)="onDepartementSelected(ihm.selected.departement)" [(ngModel)]="ihm.selected.departement">
+                        <option *ngFor="let departement of ihm.set.departements" [ngValue]="departement.code">{{departement.nom}}</option>
+                    </select>
+                </div>
             </div>
-        </div>
-    </form> <!-- /form -->
-</div> <!-- ./container -->
+            <div class="form-group" *ngIf="ihm.selected.departement">
+                <label for="ville" class="col-sm-3 control-label">Ville</label>
+                <div class="col-sm-9">
+                    <select id="ville" name="ville" class="form-control" (click)="log(selectedLieu)" [(ngModel)]="selectedLieu">
+                        <option *ngFor="let lieu of ihm.set.lieux" [ngValue]="lieu">{{lieu.nom}}</option>
+                    </select>
+                    <div *ngIf="selectedLieu"> {{"lat=" + selectedLieu.latitude}}&{{"lon=" + selectedLieu.longitude}}</div>
+                </div>
+            </div>
+
+            
+            <fieldset>
+                <legend>Activités</legend>
+                <div class="form-group">
+                    <label for="activite" class="col-sm-3 control-label">Activité</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="activite" name="activite" placeholder="Activité" class="form-control">
+                        <span class="help-block">Activité, eg.: Football</span>
+                    </div>  
+                </div>
+
+                <!-- BLOC TEMPERATURE -->
+                <div class="form-group">
+                    <label for="" class="col-sm-3 control-label">Température</label>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label for="temperatureMin" class="col-sm-3 control-label">Min</label>
+                            <div class="col-sm-1">
+                                <input type="text" id="temperatureMin" name="temperatureMin" placeholder="Min" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="temperatureInf" class="col-sm-3 control-label">Inf</label>
+                            <div class="col-sm-1">
+                                <input type="text" id="temperatureInf" name="temperatureInf" placeholder="Inf" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-3 control-label">Température</label>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label for="temperatureMax" class="col-sm-3 control-label">Max</label>
+                            <div class="col-sm-1">
+                                <input type="text" id="temperatureMax" name="temperatureMax" placeholder="Max" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="temperatureSup" class="col-sm-3 control-label">Sup</label>
+                            <div class="col-sm-1">
+                                <input type="text" id="temperatureSup" name="temperatureSup" placeholder="Sup" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOC VENT -->
+                <div class="form-group">
+                    <label for="" class="col-sm-3 control-label">Vent</label>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label for="ventMin" class="col-sm-3 control-label">Min</label>
+                            <div class="col-sm-1">
+                                <input type="text" id="ventMin" name="ventMin" placeholder="Min" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ventInf" class="col-sm-3 control-label">Inf</label>
+                            <div class="col-sm-1">
+                                <input type="text" id="ventInf" name="ventInf" placeholder="Inf" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-3 control-label">Vent</label>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label for="ventMax" class="col-sm-3 control-label">Max</label>
+                            <div class="col-sm-1">
+                                <input type="text" id="ventMax" name="ventMax" placeholder="Max" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ventSup" class="col-sm-3 control-label">Sup</label>
+                            <div class="col-sm-1">
+                                <input type="text" id="ventSup" name="ventSup" placeholder="Sup" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" required>I accept <a href="#">terms</a>
+                            </label>
+                        </div>
+                    </div>
+                </div> <!-- /.form-group -->
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <button type="submit" class="btn btn-primary btn-block">Save</button>
+                    </div>
+                </div>
+            </fieldset>     
+        </fieldset>
+        <hr>
+    </form>
+</div>

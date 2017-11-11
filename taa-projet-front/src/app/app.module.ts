@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { HomeComponent } from './home/home.component';
 import { LieuComponent } from './lieu/lieu.component';
-import { UserConnectFormComponent } from './user-connect-form/user-connect-form.component';
 import { UserListComponent } from './user-list/user-list.component';
 
 import { AccountService } from './services/account.service';
@@ -42,7 +41,6 @@ const routes = [
     UserListComponent,
     LieuComponent,
     ActiviteListComponent,
-    UserConnectFormComponent,
     HomeComponent,
     AboutComponent,
     AuthenticationComponent,

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivitiesService } from '../services/activities.service';
-import { UserService } from '../services/user.service';
 import { LieuService } from '../services/lieu.service';
 
-import { User } from '../entities/user';
 
 @Component({
   selector: 'taa-user-list',
@@ -13,36 +10,42 @@ import { User } from '../entities/user';
 })
 export class UserListComponent implements OnInit {
 
-  users: User[];
-  lieux: any[];
-  activities: any[];
-  selectedLieu: any;
+  // Config object
+  ihm = {
 
-  constructor(private userService: UserService,
-    private lieuListService: LieuService,
-    private activitiesService: ActivitiesService ) { }
+    // values for User Interface
+    set : {
+      regions: [],
+      departements: [],
+      lieux: []
+    },
+
+    // NgModel - values currently selected
+    selected: {}
+  };
+
+  constructor(private lieuService: LieuService) { }
 
   ngOnInit() {
-    this.userService.getUsers().then( response => {
-      this.users = response;
+    this.lieuService.getRegions().then( response => {
+      this.ihm.set.regions = response;
     });
-
-    this.lieuListService.getLieux().then( response => {
-      this.lieux = response;
-    });
-
-    this.activitiesService.getActivities().then( response => {
-      this.activities = response;
-    });
-  }
-
-  selectLieu(lieu: any): void {
-    this.selectedLieu = lieu;
-    console.log(lieu);
   }
 
   log(lieu: any): void {
     console.log(lieu);
+  }
+
+  onRegionSelected(region: string) {
+    this.lieuService.getRegionDepartements(region).then( response => {
+      this.ihm.set.departements = response;
+    });
+  }
+
+  onDepartementSelected(departement: string) {
+    this.lieuService.getDepartementLieux(departement).then( response => {
+      this.ihm.set.lieux = response;
+    });
   }
 
 

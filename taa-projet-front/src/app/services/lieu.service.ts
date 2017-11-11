@@ -19,6 +19,27 @@ export class LieuService {
       .catch(this.handleError);
   }
 
+  getDepartementLieux(codeDepartement: string): Promise<any[]> {
+    return this.http.get(this.BASE_URL + '/lieu/departement/' + codeDepartement, this.jwt())
+      .map(res => res.json())
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  getRegionDepartements(region: string): Promise<any[]> {
+    return this.http.get(this.BASE_URL + '/departement/region/' + region, this.jwt())
+      .map(res => res.json())
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  getRegions(): Promise<any[]> {
+    return this.http.get(this.BASE_URL + '/region', this.jwt())
+      .map(res => res.json())
+      .toPromise()
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
