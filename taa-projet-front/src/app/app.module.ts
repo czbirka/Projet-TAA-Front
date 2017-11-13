@@ -11,8 +11,7 @@ import { ActiviteListComponent } from './activite-list/activite-list.component';
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { HomeComponent } from './home/home.component';
-import { LieuComponent } from './lieu/lieu.component';
-import { UserListComponent } from './user-list/user-list.component';
+import { ActivityComponent } from './activity/activity.component';
 
 import { AccountService } from './services/account.service';
 import { ActivitiesService } from './services/activities.service';
@@ -28,7 +27,7 @@ import { AuthenticationGuard } from './guard/authentication.guard';
 const routes = [
 
   { path: '', component: HomeComponent, canActivate: [AuthenticationGuard] },
-  { path: 'user', component: UserListComponent, canActivate: [AuthenticationGuard] },
+  { path: 'activity', component: ActivityComponent, canActivate: [AuthenticationGuard] },
   { path: 'activities', component: ActiviteListComponent, canActivate: [AuthenticationGuard] },
   { path: 'about', component: AboutComponent, canActivate: [AuthenticationGuard] },
   { path: 'login', component: AuthenticationComponent },
@@ -38,8 +37,7 @@ const routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
-    LieuComponent,
+    ActivityComponent,
     ActiviteListComponent,
     HomeComponent,
     AboutComponent,

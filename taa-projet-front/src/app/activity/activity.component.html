@@ -27,10 +27,10 @@
             <div class="form-group" *ngIf="ihm.selected.departement">
                 <label for="ville" class="col-sm-3 control-label">Ville</label>
                 <div class="col-sm-9">
-                    <select required [ngClass]="{ 'has-error': f.submitted && !villeField.valid }"  #villeField="ngModel" id="ville" name="ville" class="form-control" (change)="log(selectedLieu)" [(ngModel)]="selectedLieu">
-                        <option *ngFor="let lieu of ihm.set.lieux" [ngValue]="lieu">{{lieu.nom}}</option>
+                    <select required [ngClass]="{ 'has-error': f.submitted && !villeField.valid }"  #villeField="ngModel" id="ville" name="ville" class="form-control" (change)="log(ihm.selected.lieu)" [(ngModel)]="ihm.selected.lieu">
+                        <option *ngFor="let lieu of ihm.set.lieux" [ngValue]="lieu.id">{{lieu.nom}}</option>
                     </select>
-                    <div *ngIf="selectedLieu"> {{"lat=" + selectedLieu.latitude}}&{{"lon=" + selectedLieu.longitude}}</div>
+                    <div *ngIf="ihm.selected.lieu"> {{"lat=" + ihm.selected.lieu.latitude}}&{{"lon=" + ihm.selected.lieu.longitude}}</div>
                 </div>
                 <div *ngIf="f.submitted && !villeField.valid" class="help-block col-sm-offset-3">Ville is required</div>
             </div>

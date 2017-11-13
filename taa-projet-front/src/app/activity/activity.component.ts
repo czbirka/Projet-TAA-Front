@@ -7,17 +7,18 @@ import { LieuService } from '../services/lieu.service';
 import { AuthenticationService } from '../services/authentication.service';
 
 import { Activite } from '../entities/activite';
+import { Condition } from '../entities/condition';
 import { User } from '../entities/user';
 
 
 
 @Component({
-  selector: 'taa-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  selector: 'taa-activity',
+  templateUrl: './activity.component.html',
+  styleUrls: ['./activity.component.css']
 })
 
-export class UserListComponent implements OnInit {
+export class ActivityComponent implements OnInit {
 
   // Config object
   ihm = {
@@ -30,7 +31,11 @@ export class UserListComponent implements OnInit {
     },
 
     // Ngactivite - values currently selected
-    selected: {}
+    selected: {
+      region: '',
+      departement: '',
+      lieu: '',
+    }
   };
 
   activite = {
@@ -42,8 +47,7 @@ export class UserListComponent implements OnInit {
     vent_inf: '',
     vent_max: '',
     vent_min: '',
-    vent_sup: '',
-    user_idIndex: -1
+    vent_sup: ''
   };
 
   user: User;
@@ -65,7 +69,6 @@ export class UserListComponent implements OnInit {
 
   log(logMe: any): void {
     this.user = this.authenticationService.getUser();
-    this.activite.user_idIndex = this.user.id;
     console.log(logMe);
   }
 
@@ -110,8 +113,7 @@ export class UserListComponent implements OnInit {
       this.activite.vent_inf === undefined ||
       this.activite.vent_max === undefined ||
       this.activite.vent_min === undefined ||
-      this.activite.vent_sup === undefined ||
-      this.activite.user_idIndex === undefined
+      this.activite.vent_sup === undefined
     ) {
       console.log('Veuillez remplir tous les champs !');
       return;
@@ -179,21 +181,26 @@ export class UserListComponent implements OnInit {
 
     // Si on arrive ici, tout va bien !
     this.newActivite = new Activite;
+
     this.newActivite.nom = this.activite.nom;
-    this.newActivite.temp_inf = Number(this.activite.temp_inf);
-    this.newActivite.temp_max = Number(this.activite.temp_max);
-    this.newActivite.temp_min = Number(this.activite.temp_min);
-    this.newActivite.temp_sup = Number(this.activite.temp_sup);
-    this.newActivite.vent_inf = Number(this.activite.vent_inf);
-    this.newActivite.vent_max = Number(this.activite.vent_max);
-    this.newActivite.vent_min = Number(this.activite.vent_min);
-    this.newActivite.vent_sup = Number(this.activite.vent_sup);
-    this.newActivite.user_idIndex = this.activite.user_idIndex ;
+    this.newActivite.user = this.user;
 
-      console.log(this.newActivite);
-      
+    this.newActivite.lieux = [];
+    this.newActivite.lieux.push({id: this.ihm.selected.lieu});
 
-    this.submit();
+    this.newActivite.condition = new Condition;
+    this.newActivite.condition.ventMin = Number(this.activite.temp_inf);
+    this.newActivite.condition.ventInf = Number(this.activite.temp_max);
+    this.newActivite.condition.ventSup = Number(this.activite.temp_min);
+    this.newActivite.condition.ventMax = Number(this.activite.temp_sup);
+    this.newActivite.condition.tempMin = Number(this.activite.vent_inf);
+    this.newActivite.condition.tempInf = Number(this.activite.vent_max);
+    this.newActivite.condition.tempSup = Number(this.activite.vent_min);
+    this.newActivite.condition.tempMax = Number(this.activite.vent_sup);
+
+    console.log(this.newActivite);
+
+      this.submit();
   }
 
 }
