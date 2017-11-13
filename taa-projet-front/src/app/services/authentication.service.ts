@@ -3,6 +3,9 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { UserService } from '../services/user.service';
+import { User } from '../entities/user';
+
 @Injectable()
 export class AuthenticationService {
 
@@ -14,8 +17,12 @@ export class AuthenticationService {
 
     token: string;
     isAuth: boolean;
+    user: User;
 
-    constructor(private http: Http) { 
+    constructor(
+        private http: Http,
+        private userService: UserService
+    ) {
         this.isAuth = false;
     }
 
@@ -27,11 +34,14 @@ export class AuthenticationService {
         )
         .map((response: Response) => {
             // login successful if there's a jwt token in the response
-            let token = {"token": response.text()};
+            const token = {'token': response.text()};
             if (token !== undefined) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(token));
+                localStorage.setItem('userLogin', username);
                 this.isAuth = true;
+
+                this.findUser();
             }
             return token;
         });
@@ -40,10 +50,22 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('userLogin');
         this.isAuth = false;
     }
 
     isLogged() {
-        return this.isAuth;
+        return localStorage.getItem('userLogin');
+    }
+
+    getUser() {
+        if (!this.user) {  this.findUser(); }
+        return this.user;
+    }
+
+    private findUser() {
+        this.userService.getUserByLogin(localStorage.getItem('userLogin')).then( theUser => {
+            this.user = theUser;
+        });
     }
 }

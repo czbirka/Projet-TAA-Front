@@ -1,5 +1,7 @@
 <div class="container">
-    <form class="form-horizontal" role="form">
+    <form class="form-horizontal" name="form" (ngSubmit)="f.form.valid && performControl()" #f="ngForm" role="form" novalidate>
+    <!-- <form class="form-horizontal" name="form" (ngSubmit)="f.form.valid" #f="ngForm" role="form" novalidate> -->
+                    
         <h2>What Can I Do ? You can "Plan a new activity !"</h2>
 
         <fieldset>
@@ -7,27 +9,30 @@
             <div class="form-group">
                 <label for="region" class="col-sm-3 control-label">Région</label>
                 <div class="col-sm-9">
-                    <select autofocus id="region" name="region" class="form-control" (change)="onRegionSelected(ihm.selected.region)" [(ngModel)]="ihm.selected.region">
+                    <select required autofocus [ngClass]="{ 'has-error': f.submitted && !regionField.valid }" #regionField="ngModel" id="region" name="region" class="form-control" (change)="onRegionSelected(ihm.selected.region)" [(ngModel)]="ihm.selected.region">
                         <option *ngFor="let region of ihm.set.regions" [ngValue]="region.nom">{{region.nom}}</option>
                     </select>
                 </div>
+                <div *ngIf="f.submitted && !regionField.valid" class="help-block col-sm-offset-3">Région is required</div>
             </div>
             <div class="form-group" *ngIf="ihm.selected.region">
                 <label for="departement" class="col-sm-3 control-label">Département</label>
                 <div class="col-sm-9">
-                    <select id="departement" name="departement" class="form-control" (change)="onDepartementSelected(ihm.selected.departement)" [(ngModel)]="ihm.selected.departement">
+                    <select required [ngClass]="{ 'has-error': f.submitted && !departementField.valid }" #departementField="ngModel" id="departement" name="departement" class="form-control" (change)="onDepartementSelected(ihm.selected.departement)" [(ngModel)]="ihm.selected.departement">
                         <option *ngFor="let departement of ihm.set.departements" [ngValue]="departement.code">{{departement.nom}}</option>
                     </select>
                 </div>
+                <div *ngIf="f.submitted && !departementField.valid" class="help-block col-sm-offset-3">Département is required</div>
             </div>
             <div class="form-group" *ngIf="ihm.selected.departement">
                 <label for="ville" class="col-sm-3 control-label">Ville</label>
                 <div class="col-sm-9">
-                    <select id="ville" name="ville" class="form-control" (click)="log(selectedLieu)" [(ngModel)]="selectedLieu">
+                    <select required [ngClass]="{ 'has-error': f.submitted && !villeField.valid }"  #villeField="ngModel" id="ville" name="ville" class="form-control" (change)="log(selectedLieu)" [(ngModel)]="selectedLieu">
                         <option *ngFor="let lieu of ihm.set.lieux" [ngValue]="lieu">{{lieu.nom}}</option>
                     </select>
                     <div *ngIf="selectedLieu"> {{"lat=" + selectedLieu.latitude}}&{{"lon=" + selectedLieu.longitude}}</div>
                 </div>
+                <div *ngIf="f.submitted && !villeField.valid" class="help-block col-sm-offset-3">Ville is required</div>
             </div>
 
             
@@ -36,9 +41,10 @@
                 <div class="form-group">
                     <label for="activite" class="col-sm-3 control-label">Activité</label>
                     <div class="col-sm-9">
-                        <input type="text" id="activite" name="activite" placeholder="Activité" class="form-control">
+                        <input required type="text" [ngClass]="{ 'has-error': f.submitted && !activiteField.valid }" #activiteField="ngModel" id="activite" name="activite" [(ngModel)]="activite.nom" placeholder="Activité" class="form-control">
                         <span class="help-block">Activité, eg.: Football</span>
                     </div>  
+                    <div *ngIf="f.submitted && !activiteField.valid" class="help-block col-sm-offset-3">Activité is required</div>
                 </div>
 
                 <!-- BLOC TEMPERATURE -->
@@ -46,16 +52,18 @@
                     <label for="" class="col-sm-3 control-label">Température</label>
                     <div class="form-inline">
                         <div class="form-group">
-                            <label for="temperatureMin" class="col-sm-3 control-label">Min</label>
+                            <label for="temp_min" class="col-sm-3 control-label">Min</label>
                             <div class="col-sm-1">
-                                <input type="text" id="temperatureMin" name="temperatureMin" placeholder="Min" class="form-control">
+                                <input type="text" [ngClass]="{ 'has-error': f.submitted && !tempMinField.valid }" #tempMinField="ngModel" id="temp_min" name="temp_min" [(ngModel)]="activite.temp_min" placeholder="Min" class="form-control" required />
                             </div>
+                            <div *ngIf="f.submitted && !tempMinField.valid" class="help-block col-sm-offset-3">Temp Min is required</div>
                         </div>
                         <div class="form-group">
-                            <label for="temperatureInf" class="col-sm-3 control-label">Inf</label>
+                            <label for="temp_inf" class="col-sm-3 control-label">Inf</label>
                             <div class="col-sm-1">
-                                <input type="text" id="temperatureInf" name="temperatureInf" placeholder="Inf" class="form-control">
+                                <input type="text" [ngClass]="{ 'has-error': f.submitted && !tempInfField.valid }" #tempInfField="ngModel" id="temp_inf" name="temp_inf" [(ngModel)]="activite.temp_inf" placeholder="Inf" class="form-control" required />
                             </div>
+                            <div *ngIf="f.submitted && !tempInfField.valid" class="help-block col-sm-offset-3">Temp Inf is required</div>
                         </div>
                     </div>
                 </div>
@@ -63,16 +71,18 @@
                     <label for="" class="col-sm-3 control-label">Température</label>
                     <div class="form-inline">
                         <div class="form-group">
-                            <label for="temperatureMax" class="col-sm-3 control-label">Max</label>
+                            <label for="temp_max" class="col-sm-3 control-label">Max</label>
                             <div class="col-sm-1">
-                                <input type="text" id="temperatureMax" name="temperatureMax" placeholder="Max" class="form-control">
+                                <input required type="text" [ngClass]="{ 'has-error': f.submitted && !tempMaxField.valid }" #tempMaxField="ngModel" id="temp_max" name="temp_max" [(ngModel)]="activite.temp_max" placeholder="Max" class="form-control">
                             </div>
+                            <div *ngIf="f.submitted && !tempMaxField.valid" class="help-block col-sm-offset-3">Temp Max is required</div>
                         </div>
                         <div class="form-group">
-                            <label for="temperatureSup" class="col-sm-3 control-label">Sup</label>
+                            <label for="temp_sup" class="col-sm-3 control-label">Sup</label>
                             <div class="col-sm-1">
-                                <input type="text" id="temperatureSup" name="temperatureSup" placeholder="Sup" class="form-control">
+                                <input required type="text" [ngClass]="{ 'has-error': f.submitted && !tempSupField.valid }" #tempSupField="ngModel" id="temp_sup" name="temp_sup" [(ngModel)]="activite.temp_sup" placeholder="Sup" class="form-control">
                             </div>
+                            <div *ngIf="f.submitted && !tempSupField.valid" class="help-block col-sm-offset-3">Vent Sup is required</div>
                         </div>
                     </div>
                 </div>
@@ -82,16 +92,18 @@
                     <label for="" class="col-sm-3 control-label">Vent</label>
                     <div class="form-inline">
                         <div class="form-group">
-                            <label for="ventMin" class="col-sm-3 control-label">Min</label>
+                            <label for="vent_min" class="col-sm-3 control-label">Min</label>
                             <div class="col-sm-1">
-                                <input type="text" id="ventMin" name="ventMin" placeholder="Min" class="form-control">
+                                <input required type="text" [ngClass]="{ 'has-error': f.submitted && !ventMinField.valid }" #ventMinField="ngModel" id="vent_min" name="vent_min" [(ngModel)]="activite.vent_min" placeholder="Min" class="form-control">
                             </div>
+                            <div *ngIf="f.submitted && !ventMinField.valid" class="help-block col-sm-offset-3">Vent Min is required</div>
                         </div>
                         <div class="form-group">
-                            <label for="ventInf" class="col-sm-3 control-label">Inf</label>
+                            <label for="vent_inf" class="col-sm-3 control-label">Inf</label>
                             <div class="col-sm-1">
-                                <input type="text" id="ventInf" name="ventInf" placeholder="Inf" class="form-control">
+                                <input required type="text" [ngClass]="{ 'has-error': f.submitted && !ventInfField.valid }" #ventInfField="ngModel" id="vent_inf" name="vent_inf" [(ngModel)]="activite.vent_inf" placeholder="Inf" class="form-control">
                             </div>
+                            <div *ngIf="f.submitted && !ventInfField.valid" class="help-block col-sm-offset-3">Vent Inf is required</div>
                         </div>
                     </div>
                 </div>
@@ -99,32 +111,25 @@
                     <label for="" class="col-sm-3 control-label">Vent</label>
                     <div class="form-inline">
                         <div class="form-group">
-                            <label for="ventMax" class="col-sm-3 control-label">Max</label>
+                            <label for="vent_max" class="col-sm-3 control-label">Max</label>
                             <div class="col-sm-1">
-                                <input type="text" id="ventMax" name="ventMax" placeholder="Max" class="form-control">
+                                <input required type="text" [ngClass]="{ 'has-error': f.submitted && !ventMaxField.valid }" #ventMaxField="ngModel" id="vent_max" name="vent_max" [(ngModel)]="activite.vent_max" placeholder="Max" class="form-control">
                             </div>
+                            <div *ngIf="f.submitted && !ventMaxField.valid" class="help-block col-sm-offset-3">Vent Max is required</div>
                         </div>
                         <div class="form-group">
-                            <label for="ventSup" class="col-sm-3 control-label">Sup</label>
+                            <label for="vent_sup" class="col-sm-3 control-label">Sup</label>
                             <div class="col-sm-1">
-                                <input type="text" id="ventSup" name="ventSup" placeholder="Sup" class="form-control">
+                                <input required type="text" [ngClass]="{ 'has-error': f.submitted && !ventSupField.valid }" #ventSupField="ngModel" id="vent_sup" name="vent_sup" [(ngModel)]="activite.vent_sup" placeholder="Sup" class="form-control">
                             </div>
+                            <div *ngIf="f.submitted && !ventSupField.valid" class="help-block col-sm-offset-3">Vent Sup is required</div>
                         </div>
                     </div>
                 </div>
-                
+ 
                 <div class="form-group">
                     <div class="col-sm-9 col-sm-offset-3">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" required>I accept <a href="#">terms</a>
-                            </label>
-                        </div>
-                    </div>
-                </div> <!-- /.form-group -->
-                <div class="form-group">
-                    <div class="col-sm-9 col-sm-offset-3">
-                        <button type="submit" class="btn btn-primary btn-block">Save</button>
+                        <button type="submit" (click)="log(activite)" class="btn btn-primary btn-block">Save</button>
                     </div>
                 </div>
             </fieldset>     

@@ -20,6 +20,13 @@ export class UserService {
       .catch(this.handleError);
   }
 
+  getUserByLogin(login: string): Promise<User> {
+    return this.http.get(this.BASE_URL + '/user/login/' + login, this.jwt())
+      .map(res => res.json())
+      .toPromise()
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);

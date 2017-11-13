@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AccordionModule} from "ng2-accordion";
+import {AccordionModule} from 'ng2-accordion';
 
 @Component({
   selector: 'taa-home',

@@ -27,7 +27,7 @@ export class RegistrationComponent implements OnInit {
   register() {
     this.loading = true;
     console.log(this.newUser);
-    
+
     this.accountService.create(this.newUser)
       .subscribe(
       data => {

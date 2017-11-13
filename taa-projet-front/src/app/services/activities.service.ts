@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+
+import { Activite } from '../entities/activite';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -16,6 +18,11 @@ export class ActivitiesService {
       .map(res => res.json())
       .toPromise()
       .catch(this.handleError);
+  }
+
+  create(activite: Activite) {
+    return this.http.post(this.BASE_URL + '/activite', activite, this.jwt())
+    .map((response: Response) => response.json());
   }
 
   private handleError(error: any): Promise<any> {
