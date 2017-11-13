@@ -153,8 +153,8 @@ export class ActivityComponent implements OnInit {
         return;
       }
 
-      if (this.activite.temp_min > this.activite.temp_min) {
-        console.log('Erreur : Temp Min=' + this.activite.temp_min + ' > Temp Inf=' + this.activite.temp_min);
+      if (this.activite.temp_min > this.activite.temp_inf) {
+        console.log('Erreur : Temp Min=' + this.activite.temp_min + ' > Temp Inf=' + this.activite.temp_inf);
         return;
       }
       if (this.activite.temp_inf > this.activite.temp_sup) {
@@ -166,8 +166,8 @@ export class ActivityComponent implements OnInit {
         return;
       }
 
-      if (this.activite.vent_min > this.activite.vent_min) {
-        console.log('Erreur : Vent Min=' + this.activite.vent_min + ' > Vent Inf=' + this.activite.vent_min);
+      if (this.activite.vent_min > this.activite.vent_inf) {
+        console.log('Erreur : Vent Min=' + this.activite.vent_min + ' > Vent Inf=' + this.activite.vent_inf);
         return;
       }
       if (this.activite.vent_inf > this.activite.vent_sup) {
