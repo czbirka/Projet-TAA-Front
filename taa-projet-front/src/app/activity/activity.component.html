@@ -53,14 +53,14 @@
                         <div class="form-group">
                             <label for="temp_min" class="col-sm-3 control-label">Min</label>
                             <div class="col-sm-1">
-                                <input type="text" [ngClass]="{ 'has-error': f.submitted && !tempMinField.valid }" #tempMinField="ngModel" id="temp_min" name="temp_min" [(ngModel)]="activite.temp_min" placeholder="Min" class="form-control" required />
+                                <input type="number" [ngClass]="{ 'has-error': f.submitted && !tempMinField.valid }" #tempMinField="ngModel" id="temp_min" name="temp_min" [(ngModel)]="activite.temp_min" placeholder="Min" class="form-control" required />
                             </div>
                             <div *ngIf="f.submitted && !tempMinField.valid" class="help-block col-sm-offset-3">Temp Min is required</div>
                         </div>
                         <div class="form-group">
                             <label for="temp_inf" class="col-sm-3 control-label">Inf</label>
                             <div class="col-sm-1">
-                                <input type="text" [ngClass]="{ 'has-error': f.submitted && !tempInfField.valid }" #tempInfField="ngModel" id="temp_inf" name="temp_inf" [(ngModel)]="activite.temp_inf" placeholder="Inf" class="form-control" required />
+                                <input type="number" [ngClass]="{ 'has-error': f.submitted && !tempInfField.valid }" #tempInfField="ngModel" id="temp_inf" name="temp_inf" [(ngModel)]="activite.temp_inf" placeholder="Inf" class="form-control" required />
                             </div>
                             <div *ngIf="f.submitted && !tempInfField.valid" class="help-block col-sm-offset-3">Temp Inf is required</div>
                         </div>
@@ -72,14 +72,14 @@
                         <div class="form-group">
                             <label for="temp_max" class="col-sm-3 control-label">Max</label>
                             <div class="col-sm-1">
-                                <input required type="text" [ngClass]="{ 'has-error': f.submitted && !tempMaxField.valid }" #tempMaxField="ngModel" id="temp_max" name="temp_max" [(ngModel)]="activite.temp_max" placeholder="Max" class="form-control">
+                                <input required type="number" [ngClass]="{ 'has-error': f.submitted && !tempMaxField.valid }" #tempMaxField="ngModel" id="temp_max" name="temp_max" [(ngModel)]="activite.temp_max" placeholder="Max" class="form-control">
                             </div>
                             <div *ngIf="f.submitted && !tempMaxField.valid" class="help-block col-sm-offset-3">Temp Max is required</div>
                         </div>
                         <div class="form-group">
                             <label for="temp_sup" class="col-sm-3 control-label">Sup</label>
                             <div class="col-sm-1">
-                                <input required type="text" [ngClass]="{ 'has-error': f.submitted && !tempSupField.valid }" #tempSupField="ngModel" id="temp_sup" name="temp_sup" [(ngModel)]="activite.temp_sup" placeholder="Sup" class="form-control">
+                                <input required type="number" [ngClass]="{ 'has-error': f.submitted && !tempSupField.valid }" #tempSupField="ngModel" id="temp_sup" name="temp_sup" [(ngModel)]="activite.temp_sup" placeholder="Sup" class="form-control">
                             </div>
                             <div *ngIf="f.submitted && !tempSupField.valid" class="help-block col-sm-offset-3">Temp Sup is required</div>
                         </div>
@@ -93,14 +93,14 @@
                         <div class="form-group">
                             <label for="vent_min" class="col-sm-3 control-label">Min</label>
                             <div class="col-sm-1">
-                                <input required type="text" [ngClass]="{ 'has-error': f.submitted && !ventMinField.valid }" #ventMinField="ngModel" id="vent_min" name="vent_min" [(ngModel)]="activite.vent_min" placeholder="Min" class="form-control">
+                                <input required type="number" [ngClass]="{ 'has-error': f.submitted && !ventMinField.valid }" #ventMinField="ngModel" id="vent_min" name="vent_min" [(ngModel)]="activite.vent_min" placeholder="Min" class="form-control">
                             </div>
                             <div *ngIf="f.submitted && !ventMinField.valid" class="help-block col-sm-offset-3">Vent Min is required</div>
                         </div>
                         <div class="form-group">
                             <label for="vent_inf" class="col-sm-3 control-label">Inf</label>
                             <div class="col-sm-1">
-                                <input required type="text" [ngClass]="{ 'has-error': f.submitted && !ventInfField.valid }" #ventInfField="ngModel" id="vent_inf" name="vent_inf" [(ngModel)]="activite.vent_inf" placeholder="Inf" class="form-control">
+                                <input required type="number" [ngClass]="{ 'has-error': f.submitted && !ventInfField.valid }" #ventInfField="ngModel" id="vent_inf" name="vent_inf" [(ngModel)]="activite.vent_inf" placeholder="Inf" class="form-control">
                             </div>
                             <div *ngIf="f.submitted && !ventInfField.valid" class="help-block col-sm-offset-3">Vent Inf is required</div>
                         </div>
@@ -112,14 +112,14 @@
                         <div class="form-group">
                             <label for="vent_max" class="col-sm-3 control-label">Max</label>
                             <div class="col-sm-1">
-                                <input required type="text" [ngClass]="{ 'has-error': f.submitted && !ventMaxField.valid }" #ventMaxField="ngModel" id="vent_max" name="vent_max" [(ngModel)]="activite.vent_max" placeholder="Max" class="form-control">
+                                <input required type="number" [ngClass]="{ 'has-error': f.submitted && !ventMaxField.valid }" #ventMaxField="ngModel" id="vent_max" name="vent_max" [(ngModel)]="activite.vent_max" placeholder="Max" class="form-control">
                             </div>
                             <div *ngIf="f.submitted && !ventMaxField.valid" class="help-block col-sm-offset-3">Vent Max is required</div>
                         </div>
                         <div class="form-group">
                             <label for="vent_sup" class="col-sm-3 control-label">Sup</label>
                             <div class="col-sm-1">
-                                <input required type="text" [ngClass]="{ 'has-error': f.submitted && !ventSupField.valid }" #ventSupField="ngModel" id="vent_sup" name="vent_sup" [(ngModel)]="activite.vent_sup" placeholder="Sup" class="form-control">
+                                <input required type="number" [ngClass]="{ 'has-error': f.submitted && !ventSupField.valid }" #ventSupField="ngModel" id="vent_sup" name="vent_sup" [(ngModel)]="activite.vent_sup" placeholder="Sup" class="form-control">
                             </div>
                             <div *ngIf="f.submitted && !ventSupField.valid" class="help-block col-sm-offset-3">Vent Sup is required</div>
                         </div>
