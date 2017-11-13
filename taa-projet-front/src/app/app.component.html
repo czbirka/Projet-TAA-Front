@@ -6,10 +6,10 @@
       </a>
     </div>
       <ul class="nav navbar-nav">
-        <li>
+        <li *ngIf="authenticationService.isLogged()">
           <a href="#" routerLink="/activity">Créer une activité</a>
         </li>
-        <li>
+        <li *ngIf="authenticationService.isLogged()">
           <a href="#" routerLink="/activities">Mes activités</a>
         </li>
         <li>

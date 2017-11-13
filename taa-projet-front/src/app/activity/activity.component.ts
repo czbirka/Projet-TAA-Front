@@ -154,28 +154,28 @@ export class ActivityComponent implements OnInit {
       }
 
       if (this.activite.temp_min > this.activite.temp_min) {
-        console.log('Erreur : Temp Min > Temp Inf');
+        console.log('Erreur : Temp Min=' + this.activite.temp_min + ' > Temp Inf=' + this.activite.temp_min);
         return;
       }
       if (this.activite.temp_inf > this.activite.temp_sup) {
-        console.log('Erreur : Temp Inf > Temp Sup');
+        console.log('Erreur : Temp Inf=' + this.activite.temp_inf + ' > Temp Sup=' + this.activite.temp_sup);
         return;
       }
       if (this.activite.temp_sup > this.activite.temp_max) {
-        console.log('Erreur : Temp Sup > Temp Max');
+        console.log('Erreur : Temp Sup=' + this.activite.temp_sup + ' > Temp Max=' + this.activite.temp_max);
         return;
       }
 
       if (this.activite.vent_min > this.activite.vent_min) {
-        console.log('Erreur : Vent Min > Vent Inf');
+        console.log('Erreur : Vent Min=' + this.activite.vent_min + ' > Vent Inf=' + this.activite.vent_min);
         return;
       }
       if (this.activite.vent_inf > this.activite.vent_sup) {
-        console.log('Erreur : Vent Inf > Vent Sup');
+        console.log('Erreur : Vent Inf=' + this.activite.vent_inf + ' > Vent Sup=' + this.activite.vent_sup);
         return;
       }
       if (this.activite.vent_sup > this.activite.vent_max) {
-        console.log('Erreur : Vent Sup > Vent Max');
+        console.log('Erreur : Vent Sup=' + this.activite.vent_sup + ' > Vent Max=' + this.activite.vent_max);
         return;
       }
 

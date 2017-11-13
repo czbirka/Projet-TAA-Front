@@ -2,7 +2,7 @@
     <form class="form-horizontal" name="form" (ngSubmit)="f.form.valid && performControl()" #f="ngForm" role="form" novalidate>
     <!-- <form class="form-horizontal" name="form" (ngSubmit)="f.form.valid" #f="ngForm" role="form" novalidate> -->
                     
-        <h2>What Can I Do ? You can "Plan a new activity !"</h2>
+        <h2>Planifier une nouvelle activité :</h2>
 
         <fieldset>
             <legend>Localité</legend>        
@@ -30,7 +30,6 @@
                     <select required [ngClass]="{ 'has-error': f.submitted && !villeField.valid }"  #villeField="ngModel" id="ville" name="ville" class="form-control" (change)="log(ihm.selected.lieu)" [(ngModel)]="ihm.selected.lieu">
                         <option *ngFor="let lieu of ihm.set.lieux" [ngValue]="lieu.id">{{lieu.nom}}</option>
                     </select>
-                    <div *ngIf="ihm.selected.lieu"> {{"lat=" + ihm.selected.lieu.latitude}}&{{"lon=" + ihm.selected.lieu.longitude}}</div>
                 </div>
                 <div *ngIf="f.submitted && !villeField.valid" class="help-block col-sm-offset-3">Ville is required</div>
             </div>
@@ -82,7 +81,7 @@
                             <div class="col-sm-1">
                                 <input required type="text" [ngClass]="{ 'has-error': f.submitted && !tempSupField.valid }" #tempSupField="ngModel" id="temp_sup" name="temp_sup" [(ngModel)]="activite.temp_sup" placeholder="Sup" class="form-control">
                             </div>
-                            <div *ngIf="f.submitted && !tempSupField.valid" class="help-block col-sm-offset-3">Vent Sup is required</div>
+                            <div *ngIf="f.submitted && !tempSupField.valid" class="help-block col-sm-offset-3">Temp Sup is required</div>
                         </div>
                     </div>
                 </div>

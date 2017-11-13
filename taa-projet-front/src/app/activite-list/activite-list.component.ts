@@ -1,14 +1,29 @@
 import { Component } from '@angular/core';
+import {AccordionModule} from 'ng2-accordion';
+
 
 @Component({
   selector: 'taa-activite-list',
   templateUrl: './activite-list.component.html',
   styleUrls: ['./activite-list.component.css']
 })
-export class ActiviteListComponent {
 
-activities: any[] = [{ name: 'Foot' }, { name: 'Volley' }, { name: 'Surf' },
-                    { name: 'Tennis' }, { name: 'Basket' }, { name: 'Vélo' }];
-  activitiesFilter: any = { name: '' };
+export class ActiviteListComponent  {
+    isGroupOpen = false;
+
+    groups: Array<any> = [
+        {
+            heading: 'Rennes',
+            content: ' Cloudy :( | Foot : 7/10 | tennis : 5/10 | velo : 6/10'
+        },
+        {
+            heading: 'Nantes',
+            content: ' Sunny :) | Foot : 9/10 | tennis : 9/10 | velo : 9/10'
+        },
+        {
+            heading: 'Brest ',
+            content: 'Windy :| | Foot : 6/10 | tennis : 4/10 | velo : 4/10'
+        }
+    ];
 
 }
