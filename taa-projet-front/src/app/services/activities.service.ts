@@ -19,6 +19,13 @@ export class ActivitiesService {
       .toPromise()
       .catch(this.handleError);
   }
+  
+  getActivitiesByUserId(UserId: number): Promise<any[]> {
+    return this.http.get(this.BASE_URL + '/activite/user/' + UserId, this.jwt())
+      .map(res => res.json())
+      .toPromise()
+      .catch(this.handleError);
+  }
 
   create(activite: Activite) {
     return this.http.post(this.BASE_URL + '/activite', activite, this.jwt())

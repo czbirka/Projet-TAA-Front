@@ -162,6 +162,7 @@ export class ActivityComponent implements OnInit {
         return;
       }
       if (this.activite.temp_sup > this.activite.temp_max) {
+        console.log(this.activite.temp_sup > this.activite.temp_max);
         console.log('Erreur : Temp Sup=' + this.activite.temp_sup + ' > Temp Max=' + this.activite.temp_max);
         return;
       }

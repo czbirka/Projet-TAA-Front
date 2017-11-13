@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import {AccordionModule} from 'ng2-accordion';
+import { ActivitiesService } from '../services/activities.service';
+import { AuthenticationService } from '../services/authentication.service';
 
+import { User } from '../entities/user';
+import { Activite } from '../entities/activite';
 
 @Component({
   selector: 'taa-activite-list',
@@ -8,22 +12,30 @@ import {AccordionModule} from 'ng2-accordion';
   styleUrls: ['./activite-list.component.css']
 })
 
-export class ActiviteListComponent  {
-    isGroupOpen = false;
-
-    groups: Array<any> = [
-        {
-            heading: 'Rennes',
-            content: ' Cloudy :( | Foot : 7/10 | tennis : 5/10 | velo : 6/10'
-        },
-        {
-            heading: 'Nantes',
-            content: ' Sunny :) | Foot : 9/10 | tennis : 9/10 | velo : 9/10'
-        },
-        {
-            heading: 'Brest ',
-            content: 'Windy :| | Foot : 6/10 | tennis : 4/10 | velo : 4/10'
-        }
-    ];
-
+export class ActiviteListComponent {
+  isGroupOpen = false;
+  user: User;
+  UserId:number;
+  myActivities: Array<Activite>;
+  
+  constructor(
+    private activitiesService: ActivitiesService,
+    private authenticationService: AuthenticationService,
+  ) { }
+  
+  
+  ngOnInit() {
+    this.user = this.authenticationService.getUser();
+    console.log(this.user);
+    this.UserId = this.user.id;
+    
+    this.activitiesService.getActivitiesByUserId(this.UserId).then( response => {
+      this.myActivities = response;
+    });
+    console.log(this.myActivities);
+  }
+  
+    
+    
+  
 }
