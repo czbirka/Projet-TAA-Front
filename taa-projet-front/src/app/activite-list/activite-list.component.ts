@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import {AccordionModule} from 'ng2-accordion';
+import { Component, OnInit } from '@angular/core';
+import { AccordionModule } from 'ng2-accordion';
 import { ActivitiesService } from '../services/activities.service';
-import { AuthenticationService } from '../services/authentication.service';
+import { UserService } from '../services/user.service';
 
 import { User } from '../entities/user';
 import { Activite } from '../entities/activite';
@@ -12,30 +12,23 @@ import { Activite } from '../entities/activite';
   styleUrls: ['./activite-list.component.css']
 })
 
-export class ActiviteListComponent {
+export class ActiviteListComponent implements OnInit {
   isGroupOpen = false;
   user: User;
-  UserId:number;
+  UserId: number;
   myActivities: Array<Activite>;
-  
+
   constructor(
     private activitiesService: ActivitiesService,
-    private authenticationService: AuthenticationService,
+    private userService: UserService,
   ) { }
-  
-  
+
   ngOnInit() {
-    this.user = this.authenticationService.getUser();
-    console.log(this.user);
-    this.UserId = this.user.id;
-    
-    this.activitiesService.getActivitiesByUserId(this.UserId).then( response => {
-      this.myActivities = response;
+    this.userService.getUserByLogin(localStorage.getItem('userLogin')).then(user => {
+      this.user = user;
+      this.activitiesService.getActivitiesByUserId(this.user.id).then( response => {
+        this.myActivities = response;
+      });
     });
-    console.log(this.myActivities);
   }
-  
-    
-    
-  
 }

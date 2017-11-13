@@ -19,7 +19,7 @@ export class ActivitiesService {
       .toPromise()
       .catch(this.handleError);
   }
-  
+
   getActivitiesByUserId(UserId: number): Promise<any[]> {
     return this.http.get(this.BASE_URL + '/activite/user/' + UserId, this.jwt())
       .map(res => res.json())

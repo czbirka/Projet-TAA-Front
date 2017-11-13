@@ -55,10 +55,10 @@ const routes = [
   providers: [
     AccountService,
     ActivitiesService,
+    AlertService,
     AuthenticationGuard,
     AuthenticationService,
     LieuService,
-    AlertService,
     UserService
   ],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AlertService } from '../services/alert.service';
 
@@ -57,6 +58,7 @@ export class ActivityComponent implements OnInit {
     private activitiesService: ActivitiesService,
     private alertService: AlertService,
     private lieuService: LieuService,
+    private router: Router,
     private authenticationService: AuthenticationService,
   ) { }
 
@@ -65,11 +67,6 @@ export class ActivityComponent implements OnInit {
     this.lieuService.getRegions().then( response => {
       this.ihm.set.regions = response;
     });
-  }
-
-  log(logMe: any): void {
-    this.user = this.authenticationService.getUser();
-    console.log(logMe);
   }
 
   onRegionSelected(region: string) {
@@ -90,7 +87,7 @@ export class ActivityComponent implements OnInit {
       .subscribe(
       data => {
         this.alertService.success('activity successful saved', true);
-        // this.router.navigate(['/activities']);
+        this.router.navigate(['/activities']);
       },
       error => {
         this.alertService.error(error);
@@ -98,7 +95,6 @@ export class ActivityComponent implements OnInit {
   }
 
   performControl() {
-    console.log(this.activite);
 
     // Si le formulaire n'a pas été passé
     if (this.activite === undefined) {
@@ -198,8 +194,6 @@ export class ActivityComponent implements OnInit {
     this.newActivite.condition.tempInf = Number(this.activite.vent_max);
     this.newActivite.condition.tempSup = Number(this.activite.vent_min);
     this.newActivite.condition.tempMax = Number(this.activite.vent_sup);
-
-    console.log(this.newActivite);
 
       this.submit();
   }
